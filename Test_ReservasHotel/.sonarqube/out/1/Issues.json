@@ -1,0 +1,17 @@
+{
+  "$schema": "http://json.schemastore.org/sarif-1.0.0",
+  "version": "1.0.0",
+  "runs": [
+    {
+      "tool": {
+        "name": "Compilador de Microsoft (R) Visual C#",
+        "version": "4.9.0.0",
+        "fileVersion": "4.9.2-3.24171.17 (a7431003)",
+        "semanticVersion": "4.9.0",
+        "language": "es-ES"
+      },
+      "results": [
+      ]
+    }
+  ]
+}

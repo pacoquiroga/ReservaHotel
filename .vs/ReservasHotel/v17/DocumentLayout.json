@@ -1,0 +1,137 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|d:\\espe\\sexto semestre\\pruebas software\\parcial2\\programas\\reservashotel\\reservashotel\\controllers\\reservashotel.controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|solutionrelative:reservashotel\\controllers\\reservashotel.controller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\reservashotel\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|solutionrelative:reservashotel\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\reservashotel\\.env||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|solutionrelative:reservashotel\\.env||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\reservashotel\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|solutionrelative:reservashotel\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CFF33769-AF41-4977-A53A-64358DF21BC4}|Test_ReservasHotel\\Test_ReservasHotel.csproj|D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\test_reservashotel\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CFF33769-AF41-4977-A53A-64358DF21BC4}|Test_ReservasHotel\\Test_ReservasHotel.csproj|solutionrelative:test_reservashotel\\unittest1.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\reservashotel\\reservashotel.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|solutionrelative:reservashotel\\reservashotel.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\reservashotel\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{2201C46A-34C3-48CE-8106-F3106B4BB84D}|ReservasHotel\\ReservasHotel.csproj|solutionrelative:reservashotel\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReservasHotel",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\ReservasHotel.csproj",
+              "RelativeDocumentMoniker": "ReservasHotel\\ReservasHotel.csproj",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\ReservasHotel.csproj",
+              "RelativeToolTip": "ReservasHotel\\ReservasHotel.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABMAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-01-16T16:14:57.731Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "UnitTest1.cs",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\Test_ReservasHotel\\UnitTest1.cs",
+              "RelativeDocumentMoniker": "Test_ReservasHotel\\UnitTest1.cs",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\Test_ReservasHotel\\UnitTest1.cs",
+              "RelativeToolTip": "Test_ReservasHotel\\UnitTest1.cs",
+              "ViewState": "AQIAAA0AAAAAAAAAAAAQwAAAAAAMAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T17:34:15.393Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\appsettings.json",
+              "RelativeDocumentMoniker": "ReservasHotel\\appsettings.json",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\appsettings.json",
+              "RelativeToolTip": "ReservasHotel\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-01-16T16:30:30.101Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\Program.cs",
+              "RelativeDocumentMoniker": "ReservasHotel\\Program.cs",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\Program.cs",
+              "RelativeToolTip": "ReservasHotel\\Program.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAASAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T16:13:28.822Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ReservasHotel.Controller.cs",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\Controllers\\ReservasHotel.Controller.cs",
+              "RelativeDocumentMoniker": "ReservasHotel\\Controllers\\ReservasHotel.Controller.cs",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\Controllers\\ReservasHotel.Controller.cs",
+              "RelativeToolTip": "ReservasHotel\\Controllers\\ReservasHotel.Controller.cs",
+              "ViewState": "AQIAAN8AAAAAAAAAAAAiwHYAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T16:29:27.498Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppDBContext.cs",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\AppDBContext.cs",
+              "RelativeDocumentMoniker": "ReservasHotel\\AppDBContext.cs",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\AppDBContext.cs",
+              "RelativeToolTip": "ReservasHotel\\AppDBContext.cs",
+              "ViewState": "AQIAABgAAAAAAAAAAAAYwCEAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-01-16T16:15:59.597Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": ".env",
+              "DocumentMoniker": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\.env",
+              "RelativeDocumentMoniker": "ReservasHotel\\.env",
+              "ToolTip": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\.env",
+              "RelativeToolTip": "ReservasHotel\\.env",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAA5AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-01-16T16:15:08.506Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
