@@ -128,7 +128,7 @@ namespace ReservasHotel.Controllers
             return Ok($"Reserva eliminada: {reserva.ReservaId}");
         }
 
-        private bool ValidarFechas(ReservaUpdateDTO reservaDTO, Reserva reservaExistente, out DateTime fechaInicio, out DateTime fechaFin, out string error)
+        private bool ValidarFechas(ReservaUpdateDto reservaDTO, Reserva reservaExistente, out DateTime fechaInicio, out DateTime fechaFin, out string error)
         {
             fechaInicio = reservaDTO.FechaInicio ?? reservaExistente.FechaInicio;
             fechaFin = reservaDTO.FechaFin ?? reservaExistente.FechaFin;
@@ -155,7 +155,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private async Task<bool> ValidarYActualizarCliente(ReservaUpdateDTO reservaDTO, Reserva reservaExistente)
+        private async Task<bool> ValidarYActualizarCliente(ReservaUpdateDto reservaDTO, Reserva reservaExistente)
         {
             if (reservaDTO.ClienteId.HasValue)
             {
@@ -166,7 +166,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private async Task<bool> ValidarYActualizarHabitacion(ReservaUpdateDTO reservaDTO, Reserva reservaExistente)
+        private async Task<bool> ValidarYActualizarHabitacion(ReservaUpdateDto reservaDTO, Reserva reservaExistente)
         {
             if (reservaDTO.HabitacionId.HasValue)
             {
@@ -186,7 +186,7 @@ namespace ReservasHotel.Controllers
                                r.FechaFin > fechaInicio);
         }
 
-        private void ActualizarFechasReserva(ReservaUpdateDTO reservaDTO, Reserva reservaExistente)
+        private void ActualizarFechasReserva(ReservaUpdateDto reservaDTO, Reserva reservaExistente)
         {
             if (reservaDTO.FechaInicio.HasValue)
                 reservaExistente.FechaInicio = reservaDTO.FechaInicio.Value;

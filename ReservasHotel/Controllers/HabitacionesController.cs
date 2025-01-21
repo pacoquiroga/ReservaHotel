@@ -112,7 +112,7 @@ namespace ReservasHotel.Controllers
             return Ok($"Habitación eliminada: {habitacion.HabitacionId}");
         }
 
-        private async Task<bool> ValidarYActualizarNumeroHabitacion(int habitacionId, HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente)
+        private async Task<bool> ValidarYActualizarNumeroHabitacion(int habitacionId, HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente)
         {
             if (habitacionDTO.NumHabitacion.HasValue)
             {
@@ -127,7 +127,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private bool ValidarYActualizarPrecio(HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente, out string error)
+        private bool ValidarYActualizarPrecio(HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente, out string error)
         {
             error = string.Empty;
 
@@ -151,7 +151,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private bool ValidarYActualizarTipo(HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente, out string error)
+        private bool ValidarYActualizarTipo(HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente, out string error)
         {
             error = string.Empty;
 
@@ -169,7 +169,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private async Task<bool> ValidarYActualizarDisponibilidad(int habitacionId, HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente)
+        private async Task<bool> ValidarYActualizarDisponibilidad(int habitacionId, HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente)
         {
             if (habitacionDTO.Disponible.HasValue)
             {
