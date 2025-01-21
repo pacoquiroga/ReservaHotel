@@ -38,7 +38,7 @@ namespace ReservasHotel.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AppDBContext.Reserva>> PostReserva(ReservaCreateDTO reservaDTO)
+        public async Task<ActionResult<AppDBContext.Reserva>> PostReserva(ReservaCreateDto reservaDTO)
         {
             if (reservaDTO == null) return BadRequest("La reserva no puede ser nula.");
             if (reservaDTO.FechaInicio == default || reservaDTO.FechaFin == default)
@@ -89,7 +89,7 @@ namespace ReservasHotel.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PatchReserva(int ReservaId, ReservaUpdateDTO reservaDTO)
+        public async Task<IActionResult> PatchReserva(int ReservaId, ReservaUpdateDto reservaDTO)
         {
             if (reservaDTO == null) return BadRequest("La reserva no puede ser nula.");
 

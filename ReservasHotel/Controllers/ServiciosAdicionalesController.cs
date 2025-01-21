@@ -38,7 +38,7 @@ namespace ReservasHotel.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AppDBContext.ServicioAdicional>> PostServicio(ServicioAdicionalCreateDTO servicioDTO)
+        public async Task<ActionResult<AppDBContext.ServicioAdicional>> PostServicio(ServicioAdicionalCreateDto servicioDTO)
         {
             if (servicioDTO == null) return BadRequest("El servicio adicional no puede ser nulo.");
             if (string.IsNullOrEmpty(servicioDTO.Descripcion)) return BadRequest("La descripción es obligatoria.");
@@ -71,7 +71,7 @@ namespace ReservasHotel.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PatchServicio(int ServicioAdicionalId, ServicioAdicionalUpdateDTO servicioDTO)
+        public async Task<IActionResult> PatchServicio(int ServicioAdicionalId, ServicioAdicionalUpdateDto servicioDTO)
         {
             if (servicioDTO == null) return BadRequest("El servicio adicional no puede ser nulo.");
 

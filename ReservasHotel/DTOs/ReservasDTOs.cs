@@ -1,14 +1,14 @@
 ﻿namespace ReservasHotel.DTOs
 {
-    public class ReservaCreateDTO
+    public class ReservaCreateDto
     {
-        public DateTime FechaInicio { get; set; }
-        public DateTime FechaFin { get; set; }
-        public int ClienteId { get; set; }
-        public int HabitacionId { get; set; }
+        public required DateTime FechaInicio { get; set; }
+        public required DateTime FechaFin { get; set; }
+        public required int ClienteId { get; set; }
+        public required int HabitacionId { get; set; }
     }
 
-    public class ReservaUpdateDTO
+    public class ReservaUpdateDto
     {
         public DateTime? FechaInicio { get; set; }
         public DateTime? FechaFin { get; set; }
