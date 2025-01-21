@@ -14,67 +14,108 @@ namespace ReservasHotel
         public DbSet<Reserva> Reservas { get; set; }
         public DbSet<ServicioAdicional> ServiciosAdicionales { get; set; }
 
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            // Relación Cliente-Reserva
+            modelBuilder.Entity<Cliente>()
+                .HasMany(c => c.Reservas)
+                .WithOne()
+                .HasForeignKey(r => r.ClienteId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación Habitacion-Reserva
+            modelBuilder.Entity<Habitacion>()
+                .HasMany(h => h.Reservas)
+                .WithOne()
+                .HasForeignKey(r => r.HabitacionId)
+                .OnDelete(DeleteBehavior.Cascade);
+
+            // Relación Reserva-ServicioAdicional
+            modelBuilder.Entity<Reserva>()
+                .HasMany(r => r.ServiciosAdicionales)
+                .WithOne()
+                .HasForeignKey(sa => sa.ReservaId)
+                .OnDelete(DeleteBehavior.Cascade);
+        }
+
         public class Cliente
         {
-            public int? id { get; set; } 
+            [Key]
+            public int ClienteId { get; set; }
 
-            public required string nombre { get; set; }
+            [Required]
+            public required string Nombre { get; set; }
 
-            public required string apellido { get; set; }
+            [Required]
+            public required string Apellido { get; set; }
 
-            public string? telefono { get; set; }
+            [Phone]
+            public string? Telefono { get; set; }
 
-            
-            public ICollection<Reserva>? reservas { get; set; }
+            [EmailAddress]
+            public string? Email { get; set; }
+
+            [Required]
+            public int Edad { get; set; }
+
+            public ICollection<Reserva>? Reservas { get; set; }
         }
 
         public class Habitacion
         {
-            public int? id { get; set; } 
-            public int? numHabitacion { get; set; }
+            [Key]
+            public int HabitacionId { get; set; }
 
-            public required string tipo { get; set; }
+            [Required]
+            public int NumHabitacion { get; set; }
+
+            [Required]
+            public required string Tipo { get; set; }
 
             [Column(TypeName = "decimal(10,2)")]
-            public required decimal PrecioPorNoche { get; set; }
+            [Required]
+            public decimal PrecioPorNoche { get; set; }
 
-            public required bool Disponible { get; set; } 
+            [Required]
+            public bool Disponible { get; set; }
 
-
-            public ICollection<Reserva>? reservas { get; set; }
+            public ICollection<Reserva>? Reservas { get; set; }
         }
 
         public class Reserva
         {
-            public int? id { get; set; } 
+            [Key]
+            public int ReservaId { get; set; }
 
-            public required DateTime fechaInicio { get; set; }
+            [Required]
+            public DateTime FechaInicio { get; set; }
 
-            public required DateTime fechaFin { get; set; }
+            [Required]
+            public DateTime FechaFin { get; set; }
 
-            public required int clienteId { get; set; } 
+            [Required]
+            public int ClienteId { get; set; }
 
-            public required int habitacionId { get; set; }
+            [Required]
+            public int HabitacionId { get; set; }
 
-            [Column(TypeName = "decimal(10,2)")]
-            public required decimal precioTotal { get; set; } 
-
-            public ICollection<ServicioAdicional>? serviciosAdicionales { get; set; }
+            public ICollection<ServicioAdicional>? ServiciosAdicionales { get; set; }
         }
 
-        
         public class ServicioAdicional
         {
-            public int? id { get; set; } 
+            [Key]
+            public int ServicioAdicionalId { get; set; }
 
-            public required string descripcion { get; set; }
+            [Required]
+            public required string Descripcion { get; set; }
 
             [Column(TypeName = "decimal(10,2)")]
-            public required decimal costo { get; set; }
+            [Required]
+            public decimal Costo { get; set; }
 
-            public required int idReserva { get; set; } 
+            [Required]
+            public int ReservaId { get; set; }
         }
-
-
     }
 }

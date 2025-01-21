@@ -24,110 +24,110 @@ namespace ReservasHotel.Migrations
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+Cliente", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ClienteId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ClienteId"));
 
-                    b.Property<string>("apellido")
+                    b.Property<string>("Apellido")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("nombre")
+                    b.Property<int>("Edad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("telefono")
+                    b.Property<string>("Telefono")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("ClienteId");
 
                     b.ToTable("Clientes");
                 });
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+Habitacion", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("HabitacionId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("HabitacionId"));
 
                     b.Property<bool>("Disponible")
                         .HasColumnType("bit");
 
+                    b.Property<int>("NumHabitacion")
+                        .HasColumnType("int");
+
                     b.Property<decimal>("PrecioPorNoche")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<int?>("numHabitacion")
-                        .HasColumnType("int");
-
-                    b.Property<string>("tipo")
+                    b.Property<string>("Tipo")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("id");
+                    b.HasKey("HabitacionId");
 
                     b.ToTable("Habitaciones");
                 });
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+Reserva", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ReservaId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ReservaId"));
 
-                    b.Property<int>("clienteId")
+                    b.Property<int>("ClienteId")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("fechaFin")
+                    b.Property<DateTime>("FechaFin")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("fechaInicio")
+                    b.Property<DateTime>("FechaInicio")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("habitacionId")
+                    b.Property<int>("HabitacionId")
                         .HasColumnType("int");
 
-                    b.Property<decimal>("precioTotal")
-                        .HasColumnType("decimal(10,2)");
+                    b.HasKey("ReservaId");
 
-                    b.HasKey("id");
+                    b.HasIndex("ClienteId");
 
-                    b.HasIndex("clienteId");
-
-                    b.HasIndex("habitacionId");
+                    b.HasIndex("HabitacionId");
 
                     b.ToTable("Reservas");
                 });
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+ServicioAdicional", b =>
                 {
-                    b.Property<int>("id")
+                    b.Property<int>("ServicioAdicionalId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ServicioAdicionalId"));
 
-                    b.Property<int?>("Reservaid")
-                        .HasColumnType("int");
-
-                    b.Property<decimal>("costo")
+                    b.Property<decimal>("Costo")
                         .HasColumnType("decimal(10,2)");
 
-                    b.Property<string>("descripcion")
+                    b.Property<string>("Descripcion")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("idReserva")
+                    b.Property<int>("ReservaId")
                         .HasColumnType("int");
 
-                    b.HasKey("id");
+                    b.HasKey("ServicioAdicionalId");
 
-                    b.HasIndex("Reservaid");
+                    b.HasIndex("ReservaId");
 
                     b.ToTable("ServiciosAdicionales");
                 });
@@ -135,14 +135,14 @@ namespace ReservasHotel.Migrations
             modelBuilder.Entity("ReservasHotel.AppDBContext+Reserva", b =>
                 {
                     b.HasOne("ReservasHotel.AppDBContext+Cliente", null)
-                        .WithMany("reservas")
-                        .HasForeignKey("clienteId")
+                        .WithMany("Reservas")
+                        .HasForeignKey("ClienteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("ReservasHotel.AppDBContext+Habitacion", null)
-                        .WithMany("reservas")
-                        .HasForeignKey("habitacionId")
+                        .WithMany("Reservas")
+                        .HasForeignKey("HabitacionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
@@ -150,23 +150,25 @@ namespace ReservasHotel.Migrations
             modelBuilder.Entity("ReservasHotel.AppDBContext+ServicioAdicional", b =>
                 {
                     b.HasOne("ReservasHotel.AppDBContext+Reserva", null)
-                        .WithMany("serviciosAdicionales")
-                        .HasForeignKey("Reservaid");
+                        .WithMany("ServiciosAdicionales")
+                        .HasForeignKey("ReservaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+Cliente", b =>
                 {
-                    b.Navigation("reservas");
+                    b.Navigation("Reservas");
                 });
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+Habitacion", b =>
                 {
-                    b.Navigation("reservas");
+                    b.Navigation("Reservas");
                 });
 
             modelBuilder.Entity("ReservasHotel.AppDBContext+Reserva", b =>
                 {
-                    b.Navigation("serviciosAdicionales");
+                    b.Navigation("ServiciosAdicionales");
                 });
 #pragma warning restore 612, 618
         }

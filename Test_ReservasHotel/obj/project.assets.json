@@ -8464,19 +8464,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\paqui\\.nuget\\packages\\": {}
+    "C:\\Users\\erick\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\Test_ReservasHotel\\Test_ReservasHotel.csproj",
+      "projectUniqueName": "D:\\ESPE\\SEXTO SEMESTRE\\PRUEBAS DE SW\\VS\\ReservaHotel\\Test_ReservasHotel\\Test_ReservasHotel.csproj",
       "projectName": "Test_ReservasHotel",
-      "projectPath": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\Test_ReservasHotel\\Test_ReservasHotel.csproj",
-      "packagesPath": "C:\\Users\\paqui\\.nuget\\packages\\",
-      "outputPath": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\Test_ReservasHotel\\obj\\",
+      "projectPath": "D:\\ESPE\\SEXTO SEMESTRE\\PRUEBAS DE SW\\VS\\ReservaHotel\\Test_ReservasHotel\\Test_ReservasHotel.csproj",
+      "packagesPath": "C:\\Users\\erick\\.nuget\\packages\\",
+      "outputPath": "D:\\ESPE\\SEXTO SEMESTRE\\PRUEBAS DE SW\\VS\\ReservaHotel\\Test_ReservasHotel\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\paqui\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\erick\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8490,8 +8495,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\ReservasHotel.csproj": {
-              "projectPath": "D:\\ESPE\\SEXTO SEMESTRE\\Pruebas Software\\Parcial2\\Programas\\ReservasHotel\\ReservasHotel\\ReservasHotel.csproj"
+            "D:\\ESPE\\SEXTO SEMESTRE\\PRUEBAS DE SW\\VS\\ReservaHotel\\ReservasHotel\\ReservasHotel.csproj": {
+              "projectPath": "D:\\ESPE\\SEXTO SEMESTRE\\PRUEBAS DE SW\\VS\\ReservaHotel\\ReservasHotel\\ReservasHotel.csproj"
             }
           }
         }
@@ -8505,7 +8510,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.100"
     },
     "frameworks": {
       "net8.0": {
@@ -8544,7 +8550,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.205/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
       }
     }
   }
