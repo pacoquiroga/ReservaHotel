@@ -1,6 +1,6 @@
 ﻿namespace ReservasHotel.DTOs
 {
-    public class ClienteCreateDTO
+    public class ClienteCreateDto
     {
         public required string Nombre { get; set; }
         public required string Apellido { get; set; }
@@ -10,7 +10,7 @@
         public required int Edad { get; set; }
     }
 
-    public class ClienteUpdateDTO
+    public class ClienteUpdateDto
     {
         public string? Nombre { get; set; }
         public string? Apellido { get; set; }

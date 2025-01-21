@@ -334,3 +334,4 @@ D:\ESPE\SEXTO SEMESTRE\PRUEBAS DE SW\VS\ReservaHotel\Test_ReservasHotel\obj\Debu
 D:\ESPE\SEXTO SEMESTRE\PRUEBAS DE SW\VS\ReservaHotel\Test_ReservasHotel\obj\Debug\net8.0\Test_ReservasHotel.pdb
 D:\ESPE\SEXTO SEMESTRE\PRUEBAS DE SW\VS\ReservaHotel\Test_ReservasHotel\obj\Debug\net8.0\Test_ReservasHotel.genruntimeconfig.cache
 D:\ESPE\SEXTO SEMESTRE\PRUEBAS DE SW\VS\ReservaHotel\Test_ReservasHotel\obj\Debug\net8.0\ref\Test_ReservasHotel.dll
+D:\ESPE\SEXTO SEMESTRE\Pruebas Software\Parcial2\Programas\ReservasHotel\Test_ReservasHotel\obj\Debug\net8.0\Test_ReservasHotel.sourcelink.json

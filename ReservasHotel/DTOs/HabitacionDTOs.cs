@@ -1,14 +1,13 @@
 ﻿namespace ReservasHotel.DTOs
 {
-    public class HabitacionCreateDTO
+    public class HabitacionCreateDto
     {
-        public int NumHabitacion { get; set; }
+        public required int NumHabitacion { get; set; }
         public required string Tipo { get; set; }
-        public decimal PrecioPorNoche { get; set; }
-        public bool Disponible { get; set; }
+        public required decimal PrecioPorNoche { get; set; }
     }
 
-    public class HabitacionUpdateDTO
+    public class HabitacionUpdateDto
     {
         public int? NumHabitacion { get; set; }
         public string? Tipo { get; set; }

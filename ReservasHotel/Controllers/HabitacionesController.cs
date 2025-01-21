@@ -39,25 +39,25 @@ namespace ReservasHotel.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AppDBContext.Habitacion>> PostHabitacion(HabitacionCreateDTO habitacionDTO)
+        public async Task<ActionResult<AppDBContext.Habitacion>> PostHabitacion(HabitacionCreateDto habitacionDto)
         {
-            if (habitacionDTO == null) return BadRequest("La habitación no puede ser nula.");
-            if (habitacionDTO.PrecioPorNoche <= 0) return BadRequest("El precio por noche no puede ser menor a 0.");
-            if (habitacionDTO.PrecioPorNoche > 100) return BadRequest("El precio por noche no puede exceder los $100.");
-            if (string.IsNullOrEmpty(habitacionDTO.Tipo)) return BadRequest("El tipo de habitación es obligatorio.");
-            if (habitacionDTO.Tipo.Length > 50) return BadRequest("El tipo de habitación no puede exceder los 50 caracteres.");
+            if (habitacionDto == null) return BadRequest("La habitación no puede ser nula.");
+            if (habitacionDto.PrecioPorNoche <= 0) return BadRequest("El precio por noche no puede ser menor a 0.");
+            if (habitacionDto.PrecioPorNoche > 100) return BadRequest("El precio por noche no puede exceder los $100.");
+            if (string.IsNullOrEmpty(habitacionDto.Tipo)) return BadRequest("El tipo de habitación es obligatorio.");
+            if (habitacionDto.Tipo.Length > 50) return BadRequest("El tipo de habitación no puede exceder los 50 caracteres.");
 
             // Validar si el número de habitación ya existe
             var habitacionExistente = await _appDBcontext.Habitaciones
-                .FirstOrDefaultAsync(h => h.NumHabitacion == habitacionDTO.NumHabitacion);
+                .FirstOrDefaultAsync(h => h.NumHabitacion == habitacionDto.NumHabitacion);
             if (habitacionExistente != null) return BadRequest("El número de habitación ya existe.");
 
             var habitacion = new AppDBContext.Habitacion
             {
-                NumHabitacion = habitacionDTO.NumHabitacion,
-                Tipo = habitacionDTO.Tipo,
-                PrecioPorNoche = habitacionDTO.PrecioPorNoche,
-                Disponible = habitacionDTO.Disponible
+                NumHabitacion = habitacionDto.NumHabitacion,
+                Tipo = habitacionDto.Tipo,
+                PrecioPorNoche = habitacionDto.PrecioPorNoche,
+                Disponible = true,
             };
 
             _appDBcontext.Habitaciones.Add(habitacion);
@@ -69,7 +69,7 @@ namespace ReservasHotel.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PatchHabitacion(int HabitacionId, HabitacionUpdateDTO habitacionDTO)
+        public async Task<IActionResult> PatchHabitacion(int HabitacionId, HabitacionUpdateDto habitacionDTO)
         {
             if (habitacionDTO == null) return BadRequest("La habitación no puede ser nula.");
 

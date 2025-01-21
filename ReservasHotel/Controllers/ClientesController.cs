@@ -39,7 +39,7 @@ namespace ReservasHotel.Controllers
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<AppDBContext.Cliente>> PostCliente(ClienteCreateDTO clienteDTO)
+        public async Task<ActionResult<AppDBContext.Cliente>> PostCliente(ClienteCreateDto clienteDTO)
         {
             if (clienteDTO == null) return BadRequest("El cliente no puede ser nulo.");
             if (string.IsNullOrEmpty(clienteDTO.Nombre)) return BadRequest("El nombre es obligatorio.");
@@ -76,7 +76,7 @@ namespace ReservasHotel.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        public async Task<IActionResult> PatchCliente(int ClienteId, ClienteUpdateDTO clienteDTO)
+        public async Task<IActionResult> PatchCliente(int ClienteId, ClienteUpdateDto clienteDTO)
         {
             if (clienteDTO == null) return BadRequest("El cliente no puede ser nulo.");
 
