@@ -8,7 +8,7 @@ namespace Test_ReservasHotel
         [Fact]
         public void Test1()
         {
-            var habitacion = new Habitacion { Tipo = "Prueba", PrecioPorNoche=20 };
+            var habitacion = new Habitacion {NumHabitacion = 9, Tipo = "Prueba", PrecioPorNoche = 20, Disponible = true};
 
             Assert.True(habitacion.PrecioPorNoche >= 0, "El precio no puede ser negativo");
         }
