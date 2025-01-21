@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ReservasHotel.DTOs;
+using static ReservasHotel.AppDBContext;
 
 namespace ReservasHotel.Controllers
 {
@@ -75,45 +76,17 @@ namespace ReservasHotel.Controllers
             var habitacionExistente = await _appDBcontext.Habitaciones.FindAsync(HabitacionId);
             if (habitacionExistente == null) return NotFound("Habitación no encontrada.");
 
-            // Validar si el nuevo número de habitación ya existe
-            if (habitacionDTO.NumHabitacion.HasValue)
-            {
-                var habitacionConMismoNumero = await _appDBcontext.Habitaciones
-                    .FirstOrDefaultAsync(h => h.NumHabitacion == habitacionDTO.NumHabitacion && h.HabitacionId != HabitacionId);
-                if (habitacionConMismoNumero != null) return BadRequest("El número de habitación ya existe.");
-                habitacionExistente.NumHabitacion = habitacionDTO.NumHabitacion.Value;
-            }
+            if (!await ValidarYActualizarNumeroHabitacion(HabitacionId, habitacionDTO, habitacionExistente))
+                return BadRequest("El número de habitación ya existe.");
 
-            // Validar que precio sea positivo si existe en el DTO
-            if (habitacionDTO.PrecioPorNoche.HasValue)
-            {
-                if (habitacionDTO.PrecioPorNoche <= 0)
-                    return BadRequest("El precio por noche no puede ser menor a 0.");
-                if (habitacionDTO.PrecioPorNoche > 100)
-                    return BadRequest("El precio por noche no puede exceder los $100.");
-                habitacionExistente.PrecioPorNoche = habitacionDTO.PrecioPorNoche.Value;
-            }
+            if (!ValidarYActualizarPrecio(habitacionDTO, habitacionExistente, out var precioError))
+                return BadRequest(precioError);
 
-            if (!string.IsNullOrEmpty(habitacionDTO.Tipo))
-            {
-                if (habitacionDTO.Tipo.Length > 50)
-                    return BadRequest("El tipo de habitación no puede exceder los 50 caracteres.");
+            if (!ValidarYActualizarTipo(habitacionDTO, habitacionExistente, out var tipoError))
+                return BadRequest(tipoError);
 
-                habitacionExistente.Tipo = habitacionDTO.Tipo;
-            }
-
-            if (habitacionDTO.Disponible.HasValue)
-            {
-                // Validar que la habitación no esté reservada si se intenta marcar como no disponible
-                if (!habitacionDTO.Disponible.Value)
-                {
-                    var reservasActivas = await _appDBcontext.Reservas
-                        .AnyAsync(r => r.HabitacionId == HabitacionId && r.FechaFin > DateTime.Now);
-                    if (reservasActivas)
-                        return BadRequest("La habitación no puede ser marcada como no disponible porque tiene reservas activas.");
-                }
-                habitacionExistente.Disponible = habitacionDTO.Disponible.Value;
-            }
+            if (!await ValidarYActualizarDisponibilidad(HabitacionId, habitacionDTO, habitacionExistente))
+                return BadRequest("La habitación no puede ser marcada como no disponible porque tiene reservas activas.");
 
             await _appDBcontext.SaveChangesAsync();
             return Ok(habitacionExistente);
@@ -138,5 +111,82 @@ namespace ReservasHotel.Controllers
             await _appDBcontext.SaveChangesAsync();
             return Ok($"Habitación eliminada: {habitacion.HabitacionId}");
         }
+
+        private async Task<bool> ValidarYActualizarNumeroHabitacion(int habitacionId, HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente)
+        {
+            if (habitacionDTO.NumHabitacion.HasValue)
+            {
+                var habitacionConMismoNumero = await _appDBcontext.Habitaciones
+                    .FirstOrDefaultAsync(h => h.NumHabitacion == habitacionDTO.NumHabitacion && h.HabitacionId != habitacionId);
+
+                if (habitacionConMismoNumero != null)
+                    return false;
+
+                habitacionExistente.NumHabitacion = habitacionDTO.NumHabitacion.Value;
+            }
+            return true;
+        }
+
+        private bool ValidarYActualizarPrecio(HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente, out string error)
+        {
+            error = string.Empty;
+
+            if (habitacionDTO.PrecioPorNoche.HasValue)
+            {
+                if (habitacionDTO.PrecioPorNoche <= 0)
+                {
+                    error = "El precio por noche no puede ser menor a 0.";
+                    return false;
+                }
+
+                if (habitacionDTO.PrecioPorNoche > 100)
+                {
+                    error = "El precio por noche no puede exceder los $100.";
+                    return false;
+                }
+
+                habitacionExistente.PrecioPorNoche = habitacionDTO.PrecioPorNoche.Value;
+            }
+
+            return true;
+        }
+
+        private bool ValidarYActualizarTipo(HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente, out string error)
+        {
+            error = string.Empty;
+
+            if (!string.IsNullOrEmpty(habitacionDTO.Tipo))
+            {
+                if (habitacionDTO.Tipo.Length > 50)
+                {
+                    error = "El tipo de habitación no puede exceder los 50 caracteres.";
+                    return false;
+                }
+
+                habitacionExistente.Tipo = habitacionDTO.Tipo;
+            }
+
+            return true;
+        }
+
+        private async Task<bool> ValidarYActualizarDisponibilidad(int habitacionId, HabitacionUpdateDTO habitacionDTO, Habitacion habitacionExistente)
+        {
+            if (habitacionDTO.Disponible.HasValue)
+            {
+                if (!habitacionDTO.Disponible.Value)
+                {
+                    var reservasActivas = await _appDBcontext.Reservas
+                        .AnyAsync(r => r.HabitacionId == habitacionId && r.FechaFin > DateTime.Now);
+
+                    if (reservasActivas)
+                        return false;
+                }
+
+                habitacionExistente.Disponible = habitacionDTO.Disponible.Value;
+            }
+
+            return true;
+        }
+
     }
 }

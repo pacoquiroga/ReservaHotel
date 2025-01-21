@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ReservasHotel.DTOs;
+using static ReservasHotel.AppDBContext;
 
 namespace ReservasHotel.Controllers
 {
@@ -96,52 +97,19 @@ namespace ReservasHotel.Controllers
             var reservaExistente = await _appDBcontext.Reservas.FindAsync(ReservaId);
             if (reservaExistente == null) return NotFound("Reserva no encontrada.");
 
-            // Validaciones para las fechas
-            DateTime fechaInicio = reservaDTO.FechaInicio ?? reservaExistente.FechaInicio;
-            DateTime fechaFin = reservaDTO.FechaFin ?? reservaExistente.FechaFin;
+            if (!ValidarFechas(reservaDTO, reservaExistente, out DateTime fechaInicio, out DateTime fechaFin, out string error))
+                return BadRequest(error);
 
-            if (fechaFin <= fechaInicio)
-                return BadRequest("La fecha de fin debe ser mayor a la fecha de inicio.");
+            if (!await ValidarYActualizarCliente(reservaDTO, reservaExistente))
+                return NotFound("El cliente especificado no existe.");
 
-            if (fechaInicio < DateTime.Now || fechaFin < DateTime.Now)
-                return BadRequest("Las fechas de inicio y fin no pueden estar en el pasado.");
+            if (!await ValidarYActualizarHabitacion(reservaDTO, reservaExistente))
+                return BadRequest("La habitación especificada no está disponible o no existe.");
 
-            if ((fechaFin - fechaInicio).TotalDays < 1)
-                return BadRequest("La reserva debe tener una duración mínima de una noche.");
-
-            // Validación para la existencia del cliente
-            if (reservaDTO.ClienteId.HasValue)
-            {
-                var cliente = await _appDBcontext.Clientes.FindAsync(reservaDTO.ClienteId.Value);
-                if (cliente == null)
-                    return NotFound("El cliente especificado no existe.");
-                reservaExistente.ClienteId = reservaDTO.ClienteId.Value;
-            }
-
-            // Validación para la existencia de la habitación y su disponibilidad
-            if (reservaDTO.HabitacionId.HasValue)
-            {
-                var habitacion = await _appDBcontext.Habitaciones.FindAsync(reservaDTO.HabitacionId.Value);
-                if (habitacion == null)
-                    return NotFound("La habitación especificada no existe.");
-                if (!habitacion.Disponible)
-                    return BadRequest("La habitación especificada no está disponible.");
-                reservaExistente.HabitacionId = reservaDTO.HabitacionId.Value;
-            }
-
-            // Validación de solapamiento de reservas
-            var reservasSolapadas = await _appDBcontext.Reservas
-                .AnyAsync(r => r.HabitacionId == reservaExistente.HabitacionId &&
-                               r.ReservaId != ReservaId &&
-                               r.FechaInicio < fechaFin &&
-                               r.FechaFin > fechaInicio);
-            if (reservasSolapadas)
+            if (await ExisteReservaSolapada(reservaExistente, ReservaId, fechaInicio, fechaFin))
                 return BadRequest("La habitación ya está reservada para las fechas especificadas.");
 
-            if (reservaDTO.FechaInicio.HasValue)
-                reservaExistente.FechaInicio = reservaDTO.FechaInicio.Value;
-            if (reservaDTO.FechaFin.HasValue)
-                reservaExistente.FechaFin = reservaDTO.FechaFin.Value;
+            ActualizarFechasReserva(reservaDTO, reservaExistente);
 
             await _appDBcontext.SaveChangesAsync();
             return Ok(reservaExistente);
@@ -159,5 +127,73 @@ namespace ReservasHotel.Controllers
             await _appDBcontext.SaveChangesAsync();
             return Ok($"Reserva eliminada: {reserva.ReservaId}");
         }
+
+        private bool ValidarFechas(ReservaUpdateDTO reservaDTO, Reserva reservaExistente, out DateTime fechaInicio, out DateTime fechaFin, out string error)
+        {
+            fechaInicio = reservaDTO.FechaInicio ?? reservaExistente.FechaInicio;
+            fechaFin = reservaDTO.FechaFin ?? reservaExistente.FechaFin;
+
+            if (fechaFin <= fechaInicio)
+            {
+                error = "La fecha de fin debe ser mayor a la fecha de inicio.";
+                return false;
+            }
+
+            if (fechaInicio < DateTime.Now || fechaFin < DateTime.Now)
+            {
+                error = "Las fechas de inicio y fin no pueden estar en el pasado.";
+                return false;
+            }
+
+            if ((fechaFin - fechaInicio).TotalDays < 1)
+            {
+                error = "La reserva debe tener una duración mínima de una noche.";
+                return false;
+            }
+
+            error = string.Empty;
+            return true;
+        }
+
+        private async Task<bool> ValidarYActualizarCliente(ReservaUpdateDTO reservaDTO, Reserva reservaExistente)
+        {
+            if (reservaDTO.ClienteId.HasValue)
+            {
+                var cliente = await _appDBcontext.Clientes.FindAsync(reservaDTO.ClienteId.Value);
+                if (cliente == null) return false;
+                reservaExistente.ClienteId = reservaDTO.ClienteId.Value;
+            }
+            return true;
+        }
+
+        private async Task<bool> ValidarYActualizarHabitacion(ReservaUpdateDTO reservaDTO, Reserva reservaExistente)
+        {
+            if (reservaDTO.HabitacionId.HasValue)
+            {
+                var habitacion = await _appDBcontext.Habitaciones.FindAsync(reservaDTO.HabitacionId.Value);
+                if (habitacion == null || !habitacion.Disponible) return false;
+                reservaExistente.HabitacionId = reservaDTO.HabitacionId.Value;
+            }
+            return true;
+        }
+
+        private async Task<bool> ExisteReservaSolapada(Reserva reservaExistente, int reservaId, DateTime fechaInicio, DateTime fechaFin)
+        {
+            return await _appDBcontext.Reservas
+                .AnyAsync(r => r.HabitacionId == reservaExistente.HabitacionId &&
+                               r.ReservaId != reservaId &&
+                               r.FechaInicio < fechaFin &&
+                               r.FechaFin > fechaInicio);
+        }
+
+        private void ActualizarFechasReserva(ReservaUpdateDTO reservaDTO, Reserva reservaExistente)
+        {
+            if (reservaDTO.FechaInicio.HasValue)
+                reservaExistente.FechaInicio = reservaDTO.FechaInicio.Value;
+
+            if (reservaDTO.FechaFin.HasValue)
+                reservaExistente.FechaFin = reservaDTO.FechaFin.Value;
+        }
+
     }
 }

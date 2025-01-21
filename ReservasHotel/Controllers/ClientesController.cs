@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using ReservasHotel.DTOs;
+using ReservasHotel.Helpers;
 
 namespace ReservasHotel.Controllers
 {
@@ -55,7 +56,7 @@ namespace ReservasHotel.Controllers
             }
 
             // Validación de formato de teléfono
-            if (!string.IsNullOrEmpty(clienteDTO.Telefono) && !System.Text.RegularExpressions.Regex.IsMatch(clienteDTO.Telefono, @"^\+?\d{10,15}$"))
+            if (!string.IsNullOrEmpty(clienteDTO.Telefono) && !RegexHelpers.PhoneRegex().IsMatch(clienteDTO.Telefono))
                 return BadRequest("El formato del teléfono no es válido.");
 
             var cliente = new AppDBContext.Cliente
@@ -98,7 +99,7 @@ namespace ReservasHotel.Controllers
 
             if (!string.IsNullOrEmpty(clienteDTO.Telefono))
             {
-                if (!System.Text.RegularExpressions.Regex.IsMatch(clienteDTO.Telefono, @"^\+?\d{10,15}$"))
+                if (!RegexHelpers.PhoneRegex().IsMatch(clienteDTO.Telefono))
                     return BadRequest("El formato del teléfono no es válido.");
                 clienteExistente.Telefono = clienteDTO.Telefono;
             }
