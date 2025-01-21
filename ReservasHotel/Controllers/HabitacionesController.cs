@@ -127,7 +127,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private bool ValidarYActualizarPrecio(HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente, out string error)
+        private static bool ValidarYActualizarPrecio(HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente, out string error)
         {
             error = string.Empty;
 
@@ -151,7 +151,7 @@ namespace ReservasHotel.Controllers
             return true;
         }
 
-        private bool ValidarYActualizarTipo(HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente, out string error)
+        private static bool ValidarYActualizarTipo(HabitacionUpdateDto habitacionDTO, Habitacion habitacionExistente, out string error)
         {
             error = string.Empty;
 

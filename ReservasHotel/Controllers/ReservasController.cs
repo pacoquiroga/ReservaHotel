@@ -128,7 +128,7 @@ namespace ReservasHotel.Controllers
             return Ok($"Reserva eliminada: {reserva.ReservaId}");
         }
 
-        private bool ValidarFechas(ReservaUpdateDto reservaDTO, Reserva reservaExistente, out DateTime fechaInicio, out DateTime fechaFin, out string error)
+        private static bool ValidarFechas(ReservaUpdateDto reservaDTO, Reserva reservaExistente, out DateTime fechaInicio, out DateTime fechaFin, out string error)
         {
             fechaInicio = reservaDTO.FechaInicio ?? reservaExistente.FechaInicio;
             fechaFin = reservaDTO.FechaFin ?? reservaExistente.FechaFin;
@@ -186,7 +186,7 @@ namespace ReservasHotel.Controllers
                                r.FechaFin > fechaInicio);
         }
 
-        private void ActualizarFechasReserva(ReservaUpdateDto reservaDTO, Reserva reservaExistente)
+        private static void ActualizarFechasReserva(ReservaUpdateDto reservaDTO, Reserva reservaExistente)
         {
             if (reservaDTO.FechaInicio.HasValue)
                 reservaExistente.FechaInicio = reservaDTO.FechaInicio.Value;
